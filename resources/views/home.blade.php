@@ -1,12 +1,15 @@
-<!-- форма ввода e-mail для аутентификации -->
-    <form action="/input" method="post">
+@extends('layouts.app')
+
+@section('content')
+<h2> Анализатор страниц </h2>
+    <form action="{{ route('store') }}" method="post">
     @csrf
       <div>
         <label>
           Введите адрес сайта:    
-          <input type="url" required name="url[name]" value="">
+          <input type="url" name="name" value="">
         </label>
       </div>
-      <input type="submit" value="Отправить">
+      <input type="submit" value="Проверить">
     </form>
-<!-- END -->
+@endsection
