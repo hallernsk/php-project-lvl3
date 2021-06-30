@@ -16,12 +16,13 @@ class UrlController extends Controller
 //        dd($request->input('url'));        
         return $url['name'];
 //        dd($request);
-    }    
-
-
+    }  
 
     public function insertUrl(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|url|max:255',
+        ]);
         $existsUrl = DB::table('urls')->where('name', $request->name)->first() ? true : false;
         if (!$existsUrl) {
             DB::table('urls')->insert(
@@ -31,12 +32,14 @@ class UrlController extends Controller
                     'updated_at' => Carbon::now()
                 ]
             );
+            flash('Адрес добавлен в базу данных.');            
+        } else {
+            flash('Такой адрес уже существует!');
         }
 //        dd($url);
         return redirect()->route('urls');
 //        dump($request->all());
     } 
-
 
     public function readUrl($id)
     {

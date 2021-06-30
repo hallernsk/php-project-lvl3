@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('content') 
+<h2> Вы ввели адрес: </h2>
 <table>
         <tr>
             <td>
@@ -5,3 +9,4 @@
             </td>
         </tr>
 </table>
+@endsection
