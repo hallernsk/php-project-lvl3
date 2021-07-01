@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content') 
-<h2> Вы ввели адрес: </h2>
+<h2> Адрес: </h2>
 <table>
         <tr>
-            <td>
-                <?= $url->name ?>
-            </td>
+            <td>{{ $url->id }}</td>     
+            <td>{{ $url->name }}</td>
+            <td>{{ $url->updated_at }}</td>
         </tr>
 </table>
 @endsection

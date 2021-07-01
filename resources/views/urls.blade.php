@@ -5,15 +5,12 @@
     @include('flash::message')
 
     <p>Список адресов:</p>
-
-<table>
-    <?php foreach ($urls as $url) : ?>
+    <table>
+    @foreach ($urls as $url)
         <tr>
-            <td>
-                <?= $url->name ?>
-            </td>
+            <td><a href="/urls/{{$url->id}}">{{ $url->name }}</a></t>
         </tr>
-    <?php endforeach ?>
-</table>
+    @endforeach
+    </table>
 </div>
 @endsection
