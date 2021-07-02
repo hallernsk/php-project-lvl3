@@ -13,9 +13,9 @@ class HomeTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function testHomeLoading()
     {
-        $response = $this->get('/');
+        $response = $this->get(route('index'));
 
         $response->assertStatus(200);
     }

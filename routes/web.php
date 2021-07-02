@@ -15,7 +15,7 @@ use App\Http\Controllers\UrlController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::post('/store', [UrlController::class, 'insertUrl'])->name('store');
 Route::get('/urls', [UrlController::class, 'readAll'])->name('urls');
 Route::get('/urls/{id}', [UrlController::class, 'readUrl'])->name('url');
