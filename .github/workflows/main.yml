@@ -18,7 +18,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      
         # Step's name
+      - name: Setup project
+        run: make setup
+
       - name: Execute tests (Unit and Feature tests) via PHPUnit
-        run: make test
+        run: make test       
         
