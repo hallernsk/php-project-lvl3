@@ -20,7 +20,7 @@ jobs:
         env:
           DB_CONNECTION: pgsql
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD:
+          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: test
         ports:
         - 5432:5432
