@@ -22,13 +22,12 @@ class UrlControllerTest extends TestCase
         $response = $this->get(route('urls'));
 
         $response->assertOk();
-        
     }
 
     public function testStore()
     {
         $data = ['name' => 'http://test.www'];
-        $this->assertDatabaseMissing('urls', $data);        
+        $this->assertDatabaseMissing('urls', $data);
         $response = $this->post(route('store'), $data);
         $this->assertDatabaseHas('urls', $data);
     }
@@ -37,8 +36,6 @@ class UrlControllerTest extends TestCase
 //        $id = DB::table('urls')->select('id')->get();
         $id = DB::table('urls')->insertGetId(['name' => 'http://test.www']);
         $response = $this->get(route('url', $id));
-
         $response->assertOk();
     }
-
 }

@@ -12,11 +12,8 @@ class UrlController extends Controller
     public function renderUrl(Request $request)
     {
         $url = $request['url'];
-//        dd($request);
-//        dd($request->input('url'));        
         return $url['name'];
-//        dd($request);
-    }  
+    }
 
     public function insertUrl(Request $request)
     {
@@ -32,14 +29,12 @@ class UrlController extends Controller
                     'updated_at' => Carbon::now()
                 ]
             );
-            flash('Адрес добавлен в базу данных.');            
+            flash('Адрес добавлен в базу данных.');
         } else {
             flash('Такой адрес уже существует!');
         }
-//        dd($url);
         return redirect()->route('urls');
-//        dump($request->all());
-    } 
+    }
 
     public function readUrl($id)
     {
@@ -53,5 +48,4 @@ class UrlController extends Controller
         $urls = DB::table('urls')->get();
         return view('urls', ['urls' => $urls]);
     }
-
 }
