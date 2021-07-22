@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UrlController;
-
+use App\Http\Controllers\UrlCheckController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +19,4 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::post('/store', [UrlController::class, 'insertUrl'])->name('store');
 Route::get('/urls', [UrlController::class, 'readAll'])->name('urls');
 Route::get('/urls/{id}', [UrlController::class, 'readUrl'])->name('url');
+Route::post('/urls/{id}/checks', [UrlCheckController::class, 'checksUrl'])->name('urlChecks');

@@ -9,12 +9,6 @@ use Carbon\Carbon;
 
 class UrlController extends Controller
 {
-    public function renderUrl(Request $request)
-    {
-        $url = $request['url'];
-        return $url['name'];
-    }
-
     public function insertUrl(Request $request)
     {
         $validated = $request->validate([
@@ -48,4 +42,5 @@ class UrlController extends Controller
         $urls = DB::table('urls')->get();
         return view('urls', ['urls' => $urls]);
     }
+
 }
