@@ -32,8 +32,10 @@ class UrlController extends Controller
 
     public function readUrl($id)
     {
-        $url = DB::table('urls')->find($id);
-        return view('url', ['url' => $url]);
+//        $url = DB::table('urls')->find($id);
+//        $url_checks = DB::select('select * from url_checks where url_id = $id');
+        $url_checks = DB::table('url_checks')->where('url_id', $id)->get();
+        return view('url', ['checks' => $url_checks]);
     }
 
     public function readAll()
@@ -42,5 +44,4 @@ class UrlController extends Controller
         $urls = DB::table('urls')->get();
         return view('urls', ['urls' => $urls]);
     }
-
 }

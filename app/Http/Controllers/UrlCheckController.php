@@ -11,15 +11,17 @@ class UrlCheckController extends Controller
 {
     public function checksUrl(Request $request)
     {
-        dd($request);
+//        dd($request);
         DB::table('url_checks')->insert(
             [
-                'url_id' =>  $request->input('urlid'),
+                'url_id' =>  $request->input('url_id'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]
         );
-        $id = $request->input('urlid');
-        return redirect()->route('url', $id);
+        $checks = DB::table('url_checks')->get();
+        dd($checks);
+        $id = $request->input('url_id');
+        return redirect()->route('url', $checks);
     }
 }
