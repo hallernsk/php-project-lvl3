@@ -14,7 +14,7 @@ class UrlController extends Controller
         $validated = $request->validate([
             'name' => 'required|url|max:255',
         ]);
-        $existsUrl = DB::table('urls')->where('name', $request->name)->first() ? true : false;
+        $existsUrl = (bool)DB::table('urls')->where('name', $request->name)->first();
         if (!$existsUrl) {
             DB::table('urls')->insert(
                 [
@@ -42,7 +42,15 @@ class UrlController extends Controller
     public function readAll()
     {
 //        $urls = DB::select('select * from urls');
-        $urls = DB::table('urls')->get();     
-        return view('urls', ['urls' => $urls]);
+        $urls = DB::table('urls')->get();
+
+ //       $url_checks = DB::table('url_checks')->get();
+ //       dd($url_checks);
+
+        $lastCheck = DB::table('url_checks')->get()
+                                                  ->keyBy('url_id');
+
+//        dd($lastCheck);
+        return view('urls', ['urls' => $urls, 'lastCheck' => $lastCheck]);
     }
 }
