@@ -47,8 +47,9 @@ class UrlController extends Controller
  //       $url_checks = DB::table('url_checks')->get();
  //       dd($url_checks);
 
-        $lastCheck = DB::table('url_checks')->get()
-                                                  ->keyBy('url_id');
+        $lastCheck = DB::table('url_checks')->orderBy('created_at')
+                                            ->get()
+                                            ->keyBy('url_id');
 
 //        dd($lastCheck);
         return view('urls', ['urls' => $urls, 'lastCheck' => $lastCheck]);
