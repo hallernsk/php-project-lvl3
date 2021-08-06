@@ -15,6 +15,9 @@ class UrlCheckController extends Controller
         DB::table('url_checks')->insert(
             [
                 'url_id' =>  $request->input('url_id'),
+
+                'keywords' =>  $request->input('keywords'),
+
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]
