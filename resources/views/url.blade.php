@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content') 
+@section('content')
 <h1 class="mt-5 mb-3">Сайт: {{ $url->name}}</h1>
         <div class="table-responsive">
             <table class="table table-bordered table-hover text-nowrap">
@@ -34,11 +34,13 @@
 <table class="table table-bordered table-hover text-nowrap">
             <tr>
                 <th>ID</th>
+                <th>Код ответа</th>
                 <th>Последняя проверка</th>
             </tr>
             @foreach ($checks as $check)
             <tr>
                 <th>{{ $check->id }}</th>
+                <th>{{ $check->status_code }}</th>
                 <th>{{ $check->updated_at }}</th>
             </tr>
             @endforeach

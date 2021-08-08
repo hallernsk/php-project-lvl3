@@ -9,12 +9,14 @@
         <tr>
             <th>ID</th>
             <th>Имя</th>
+            <th>Код ответа</th>
             <th>Последняя проверка</th>
         </tr>
         @foreach ($urls as $url)
             <tr>
                 <td>{{ $url->id }}</td>
                 <td><a href="/urls/{{$url->id}}">{{ $url->name }}</a></td>
+                <td>{{$lastCheck[$url->id]->status_code ?? ''}}</td>
                 <td>{{$lastCheck[$url->id]->created_at ?? ''}}</td>
             </tr>
         @endforeach
