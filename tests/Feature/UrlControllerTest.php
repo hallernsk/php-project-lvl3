@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class UrlControllerTest extends TestCase
 {
@@ -35,7 +36,6 @@ class UrlControllerTest extends TestCase
 
     public function testUrlLoading()
     {
-//        $id = DB::table('urls')->select('id')->get();
         $id = DB::table('urls')->insertGetId(['name' => 'http://test.test']);
         $response = $this->get(route('url', $id));
         $response->assertOk();
@@ -45,17 +45,28 @@ class UrlControllerTest extends TestCase
     {
         $id = DB::table('urls')->insertGetId(['name' => 'https://mail.ru']);
   //      dd($id);
-  //      $urls = DB::table('urls')->get();
-  //      dd($urls);
+        $body = '<h1>test-h1</h1>
+			<meta name="keywords" content="test-keywords">
+			<meta name="description" content="test-description">';
 
-        $data = ['keywords' => 'test', 'url_id' => $id];
-        $this->assertDatabaseMissing('url_checks', $data);
-        $response = $this->post(route('urlChecks', $id), $data);
+//      Http::fake(function ($request) {         - так не работает(в контроллере response некорректный(его нет))
+//          return Http::response($body, 200);
+//      });
 
-//        $url_checks = DB::table('url_checks')->get();
- //       dd($url_checks);
- //       dd($id);
+        Http::fake([
+            '*' => Http::response($body, 200),
+        ]);
 
-        $this->assertDatabaseHas('url_checks', $data);
+        $expected = [
+                      'url_id' => $id,
+  //                    'h1' => '',              //будем формировать на след. шаге (6)
+  //                    'keywords' => '',
+  //                    'description' => '',
+                      'status_code' => 200
+                   ];
+
+        $response = $this->post(route('urlChecks', $id));
+
+        $this->assertDatabaseHas('url_checks', $expected);
     }
 }

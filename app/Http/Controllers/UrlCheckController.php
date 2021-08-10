@@ -10,36 +10,27 @@ use Carbon\Carbon;
 
 class UrlCheckController extends Controller
 {
-    public function checksUrl(Request $request)
+    public function checksUrl($id)
     {
-//        dd($request);
-
-        $id = $request->input('url_id');
+ //     dd($id);
         $url = DB::table('urls')->where('id', $id)->first();
- //       dd($url);
-        $urlName = $url->name;
-//        dd($url_name);
-
-        $response = Http::get($urlName);
-//        $response = Http::get('https://mail.ru');
-
+//        dd($url);
+        $response = Http::get($url->name);
+//        dd($response);
         $status = $response->status();
-//        dd($status);
+//       dd($status);
 
         DB::table('url_checks')->insert(
             [
-                'url_id' =>  $request->input('url_id'),
-
-                'keywords' =>  $request->input('keywords'),
-
+                'url_id' =>  $id,
+                // 'h1' =>  ,    // //будем формировать на след. шаге (6)
+                // 'keywords' =>  ,
+                // 'descriptions' =>  ,
                 'status_code' => $status,
-
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]
         );
-//        $checks = DB::table('url_checks')->get();
-//        dd($checks);
 
         return redirect()->route('url', $id);
     }
