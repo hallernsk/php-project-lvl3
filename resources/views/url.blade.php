@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<main class="flex-grow-1">
 <h1 class="mt-5 mb-3">Сайт: {{ $url->name}}</h1>
+    <div class="container-lg">
         <div class="table-responsive">
             <table class="table table-bordered table-hover text-nowrap">
                 <tr>
@@ -32,18 +34,27 @@
 </form>
 
 <table class="table table-bordered table-hover text-nowrap">
+    <tbody>
             <tr>
                 <th>ID</th>
                 <th>Код ответа</th>
+                <th>h1</th>
+                <th>keywords</th>
+                <th>description</th>
                 <th>Последняя проверка</th>
             </tr>
             @foreach ($checks as $check)
             <tr>
                 <th>{{ $check->id }}</th>
                 <th>{{ $check->status_code }}</th>
+                <th>{{ $check->h1 }}</th>
+                <th>{{ $check->keywords }}</th>
+                <th>{{ $check->description }}</th>
                 <th>{{ $check->updated_at }}</th>
             </tr>
             @endforeach
+    </tbody>
 </table>
-
+</div>
+</main>
 @endsection
