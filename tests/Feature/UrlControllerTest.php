@@ -49,19 +49,15 @@ class UrlControllerTest extends TestCase
 			<meta name="keywords" content="test-keywords">
 			<meta name="description" content="test-description">';
 
-//      Http::fake(function ($request) {         - так не работает(в контроллере response некорректный(его нет))
-//          return Http::response($body, 200);
-//      });
-
         Http::fake([
             '*' => Http::response($body, 200),
         ]);
 
         $expected = [
                       'url_id' => $id,
-  //                    'h1' => '',              //будем формировать на след. шаге (6)
-  //                    'keywords' => '',
-  //                    'description' => '',
+                      'h1' => 'test-h1',
+                      'keywords' => 'test-keywords',
+                      'description' => 'test-description',
                       'status_code' => 200
                    ];
 
