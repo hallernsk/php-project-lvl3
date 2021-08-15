@@ -2,8 +2,8 @@
 
 @section('content')
 <main class="flex-grow-1">
-<h1 class="mt-5 mb-3">Сайт: {{ $url->name}}</h1>
     <div class="container-lg">
+        <h1 class="mt-5 mb-3">Сайт: {{ $url->name}}</h1>
         <div class="table-responsive">
             <table class="table table-bordered table-hover text-nowrap">
                 <tr>
@@ -30,11 +30,11 @@
 <form method="post" action="{{ route('urlChecks', $url->id) }}">
             @csrf
             <input type="submit" class="btn btn-primary" value="Запустить проверку">
-            <input name="url_id" type="hidden" value="{{ $url->id }}">
+<!--        <input name="url_id" type="hidden" value="{{ $url->id }}">  -->
 </form>
-
-<table class="table table-bordered table-hover text-nowrap">
-    <tbody>
+<br>
+    <table class="table table-bordered table-hover">
+        <tbody>
             <tr>
                 <th>ID</th>
                 <th>Код ответа</th>
@@ -53,8 +53,8 @@
                 <th>{{ $check->updated_at }}</th>
             </tr>
             @endforeach
-    </tbody>
-</table>
+        </tbody>
+    </table>
 </div>
 </main>
 @endsection
