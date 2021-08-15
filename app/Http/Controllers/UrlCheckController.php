@@ -38,6 +38,7 @@ class UrlCheckController extends Controller
                 'updated_at' => Carbon::now()
             ]
         );
+        flash('Страница успешно проверена');
 
         return redirect()->route('url', $id);
     }

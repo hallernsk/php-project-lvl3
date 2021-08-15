@@ -43,7 +43,7 @@ class UrlControllerTest extends TestCase
 
     public function testStoreCheck()
     {
-        $id = DB::table('urls')->insertGetId(['name' => 'https://mail.ru']);
+        $id = DB::table('urls')->insertGetId(['name' => 'https://test.test']);
   //      dd($id);
         $body = '<h1>test-h1</h1>
 			<meta name="keywords" content="test-keywords">
