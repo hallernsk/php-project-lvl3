@@ -23,6 +23,7 @@
             @endforeach
             </table>
         </div>
+        {{ $urls->links() }}
     </div>
 </main>
 @endsection

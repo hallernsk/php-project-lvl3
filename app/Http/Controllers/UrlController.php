@@ -41,7 +41,7 @@ class UrlController extends Controller
     public function readAll()
     {
 //        $urls = DB::select('select * from urls');
-        $urls = DB::table('urls')->get();
+        $urls = DB::table('urls')->simplePaginate(15);
 
  //       $urlChecks = DB::table('url_checks')->get();
  //       dd($urlChecks);
