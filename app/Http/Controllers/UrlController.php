@@ -33,7 +33,7 @@ class UrlController extends Controller
     public function readUrl($id)
     {
         $url = DB::table('urls')->find($id);
-        $urlChecks = DB::table('url_checks')->where('url_id', $id)->get();
+        $urlChecks = DB::table('url_checks')->where('url_id', $id)->orderBy('created_at', 'desc')->get();
 //        dd($urlChecks);
         return view('url', ['url' => $url, 'checks' => $urlChecks]);
     }
