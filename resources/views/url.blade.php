@@ -29,9 +29,8 @@
 <h2 class="mt-5 mb-3">Проверки</h2>
 
 <form method="post" action="{{ route('urlChecks', $url->id) }}">
-            @csrf
-            <input type="submit" class="btn btn-primary" value="Запустить проверку">
-<!--        <input name="url_id" type="hidden" value="{{ $url->id }}">  -->
+    @csrf
+    <input type="submit" class="btn btn-primary" value="Запустить проверку">
 </form>
 <br>
     <table class="table table-bordered table-hover">
