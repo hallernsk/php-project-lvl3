@@ -22,17 +22,20 @@ console:
 log:
 	tail -f storage/logs/laravel.log
 
-test:
-	php artisan test
-
-deploy:
-	git push heroku
-
 lint:
 	composer run-script phpcs -- --standard=PSR12 app tests
 
 lint-fix:
 	composer phpcbf
+
+test:
+	php artisan test
+
+test-coverage:
+	php artisan test --coverage-clover build/logs/clover.xml
+
+deploy:
+	git push heroku
 
 compose:
 	docker-compose up
@@ -54,4 +57,3 @@ compose-db:
 
 compose-down:
 	docker-compose down -v
-	
