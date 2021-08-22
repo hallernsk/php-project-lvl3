@@ -38,9 +38,6 @@ jobs:
       - name: Run linter
         run: make lint
 
-      - name: Execute tests
-        run: make test
-
       - name: Run test & publish code coverage
         uses: paambaati/codeclimate-action@v2.7.5
         # Add Code Climate secret key
