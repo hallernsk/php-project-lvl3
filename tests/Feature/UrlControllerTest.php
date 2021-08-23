@@ -21,7 +21,7 @@ class UrlControllerTest extends TestCase
 
     public function testUrlsLoading()
     {
-        $response = $this->get(route('urls'));
+        $response = $this->get(route('urls.index'));
 
         $response->assertOk();
     }
@@ -30,14 +30,14 @@ class UrlControllerTest extends TestCase
     {
         $data = ['name' => 'http://test.test'];
         $this->assertDatabaseMissing('urls', $data);
-        $response = $this->post(route('store'), $data);
+        $response = $this->post(route('urls.store'), $data);
         $this->assertDatabaseHas('urls', $data);
     }
 
     public function testUrlLoading()
     {
         $id = DB::table('urls')->insertGetId(['name' => 'http://test.test']);
-        $response = $this->get(route('url', $id));
+        $response = $this->get(route('urls.show', $id));
         $response->assertOk();
     }
 
@@ -61,7 +61,7 @@ class UrlControllerTest extends TestCase
                       'status_code' => 200
                    ];
 
-        $response = $this->post(route('urlChecks', $id));
+        $response = $this->post(route('url_checks.store', $id));
 
         $this->assertDatabaseHas('url_checks', $expected);
     }

@@ -11,7 +11,7 @@ use DiDom\Document;
 
 class UrlCheckController extends Controller
 {
-    public function checksUrl($id)
+    public function store($id)
     {
  //     dd($id);
         $url = DB::table('urls')->where('id', $id)->first();
@@ -40,6 +40,6 @@ class UrlCheckController extends Controller
         );
         flash('Страница успешно проверена');
 
-        return redirect()->route('url', $id);
+        return redirect()->route('urls.show', $id);
     }
 }
