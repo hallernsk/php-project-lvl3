@@ -27,7 +27,6 @@ class UrlControllerTest extends TestCase
     public function testUrlsStore()
     {
         $data = ['name' => 'http://hexlet.io'];
-        $this->assertDatabaseMissing('urls', $data);
         $response = $this->post(route('urls.store'), $data);
         $this->assertDatabaseHas('urls', $data);
     }
