@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
 
 class UrlControllerTest extends TestCase
 {
@@ -27,7 +26,7 @@ class UrlControllerTest extends TestCase
 
     public function testUrlsStore()
     {
-        $data = ['name' => 'http://test.test'];
+        $data = ['name' => 'http://hexlet.io'];
         $this->assertDatabaseMissing('urls', $data);
         $response = $this->post(route('urls.store'), $data);
         $this->assertDatabaseHas('urls', $data);
@@ -35,7 +34,7 @@ class UrlControllerTest extends TestCase
 
     public function testUrlsShow()
     {
-        $id = DB::table('urls')->insertGetId(['name' => 'http://test.test']);
+        $id = DB::table('urls')->insertGetId(['name' => 'http://hexlet.io']);
         $response = $this->get(route('urls.show', $id));
         $response->assertOk();
     }

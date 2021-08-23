@@ -4,10 +4,10 @@ namespace Tests\Feature;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Foundation\Testing\WithFaker;
 
 class UrlCheckControllerTest extends TestCase
 {
@@ -15,7 +15,7 @@ class UrlCheckControllerTest extends TestCase
 
     public function testUrlChecksStore()
     {
-        $id = DB::table('urls')->insertGetId(['name' => 'https://test.test']);
+        $id = DB::table('urls')->insertGetId(['name' => 'https://hexlet.io']);
         //      dd($id);
         $body = '<h1>test-h1</h1>
 			<meta name="keywords" content="test-keywords">
