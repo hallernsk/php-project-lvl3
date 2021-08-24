@@ -13,20 +13,15 @@ class UrlCheckController extends Controller
 {
     public function store($id)
     {
- //     dd($id);
         $url = DB::table('urls')->where('id', $id)->first();
-//      dd($url);
         $response = Http::get($url->name);
-//        dd($response->body());
 
         $document = new Document($response->body());
         $h1 = optional($document->first('h1'))->text();
         $keywords = optional($document->first('meta[name=keywords]'))->getAttribute('content');
         $description = optional($document->first('meta[name=description]'))->getAttribute('content');
- //       dd($description);
-
         $status = $response->status();
-//       dd($status);
+
         DB::table('url_checks')->insert(
             [
                 'url_id' =>  $id,

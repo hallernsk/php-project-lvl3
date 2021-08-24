@@ -32,17 +32,11 @@ class UrlController extends Controller
 
     public function index()
     {
-//        $urls = DB::select('select * from urls');
         $urls = DB::table('urls')->paginate(15);
-
-        //       $urlChecks = DB::table('url_checks')->get();
-        //       dd($urlChecks);
-
         $lastCheck = DB::table('url_checks')->orderBy('created_at')
             ->get()
             ->keyBy('url_id');
 
-//        dd($lastCheck);
         return view('urls', ['urls' => $urls, 'lastCheck' => $lastCheck]);
     }
 
@@ -50,7 +44,6 @@ class UrlController extends Controller
     {
         $url = DB::table('urls')->find($id);
         $urlChecks = DB::table('url_checks')->where('url_id', $id)->orderBy('created_at', 'desc')->get();
-//        dd($urlChecks);
         return view('url', ['url' => $url, 'checks' => $urlChecks]);
     }
 }
