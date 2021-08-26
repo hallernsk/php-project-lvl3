@@ -10,7 +10,7 @@
           <h1> Анализатор страниц </h1>
           <p> Бесплатно проверяйте сайты на SEO пригодность </p>
             <form action="{{ route('urls.store') }}" method="post" class="d-flex justify-content-center">
-            {{ csrf_field() }}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="text" name="name" value class="form-control form-control-lg" placeholder="http://example.com">
             <button type="submit" class="btn btn-lg btn-primary ml-3 px-5 text-uppercase">Проверить</button>
           </form>
