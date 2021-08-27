@@ -43,6 +43,7 @@ class UrlControllerTest extends TestCase
     {
         $id = DB::table('urls')->insertGetId(['name' => 'http://hexlet.io']);
         $response = $this->get(route('urls.show', $id));
+//        dd($response->headers);
         $response->assertSee('hexlet.io');
         $response->assertOk();
     }

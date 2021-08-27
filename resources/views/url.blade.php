@@ -28,10 +28,10 @@
 
 <h2 class="mt-5 mb-3">Проверки</h2>
 
-<form method="post" action="{{ route('url_checks.store', $url->id) }}">
-    @csrf
-    <input type="submit" class="btn btn-primary" value="Запустить проверку">
-</form>
+        {{Form::open(['url' => route('url_checks.store', $url->id), 'method' => 'post'])}}
+        {{Form::submit('Запустить проверку', ['class' => 'btn btn-primary'])}}
+        {{Form::close()}}
+
 <br>
     <table class="table table-bordered table-hover">
         <tbody>
