@@ -28,7 +28,7 @@
 
 <h2 class="mt-5 mb-3">Проверки</h2>
 
-        {{Form::open(['url' => route('url_checks.store', $url->id), 'method' => 'post'])}}
+        {{Form::open(['url' => route('urls.checks.store', $url->id), 'method' => 'post'])}}
         {{Form::submit('Запустить проверку', ['class' => 'btn btn-primary'])}}
         {{Form::close()}}
 

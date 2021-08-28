@@ -32,7 +32,7 @@ class UrlCheckControllerTest extends TestCase
             'status_code' => 200
         ];
 
-        $response = $this->post(route('url_checks.store', $id));
+        $response = $this->post(route('urls.checks.store', $id));
 
         $this->assertDatabaseHas('url_checks', $expected);
     }
