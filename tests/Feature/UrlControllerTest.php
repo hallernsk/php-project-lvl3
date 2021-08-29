@@ -30,15 +30,6 @@ class UrlControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function testUrlsStore()
-    {
-        $data = ['name' => 'http://yandex.ru'];
-        $response = $this->post(route('urls.store'), $data);
-        $response->assertSessionHasNoErrors();
-        $response->assertRedirect();
-        $this->assertDatabaseHas('urls', $data);
-    }
-
     public function testUrlsShow()
     {
         $id = DB::table('urls')->insertGetId(['name' => 'http://hexlet.io']);
@@ -46,5 +37,14 @@ class UrlControllerTest extends TestCase
 //        dd($response->headers);
         $response->assertSee('hexlet.io');
         $response->assertOk();
+    }
+
+    public function testUrlsStore()
+    {
+        $data = ['url' => ['name' => 'http://yandex.ru']];
+        $response = $this->post(route('urls.store'), $data);
+        $response->assertSessionHasNoErrors();
+        $response->assertRedirect();
+        $this->assertDatabaseHas('urls', $data['url']);
     }
 }
