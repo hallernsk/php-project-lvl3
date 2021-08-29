@@ -12,11 +12,11 @@ class UrlController extends Controller
     public function index()
     {
         $urls = DB::table('urls')->paginate(15);
-        $lastCheck = DB::table('url_checks')->orderBy('created_at')
+        $lastChecks = DB::table('url_checks')->orderBy('created_at')
             ->get()
             ->keyBy('url_id');
-
-        return view('urls', ['urls' => $urls, 'lastCheck' => $lastCheck]);
+//        dd($lastChecks);
+        return view('urls', ['urls' => $urls, 'lastChecks' => $lastChecks]);
     }
 
     public function show($id)

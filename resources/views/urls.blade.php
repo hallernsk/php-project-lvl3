@@ -17,8 +17,8 @@
             <tr>
                 <td>{{ $url->id }}</td>
                 <td><a href="/urls/{{$url->id}}">{{ $url->name }}</a></td>
-                <td>{{$lastCheck[$url->id]->status_code ?? ''}}</td>
-                <td>{{$lastCheck[$url->id]->created_at ?? ''}}</td>
+                <td>{{$lastChecks[$url->id]->status_code ?? ''}}</td>
+                <td>{{$lastChecks[$url->id]->created_at ?? ''}}</td>
             </tr>
             @endforeach
             </table>
