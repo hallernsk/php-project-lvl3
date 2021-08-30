@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Url;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class UrlController extends Controller
 {
@@ -29,9 +30,18 @@ class UrlController extends Controller
 
     public function store(Request $request)
     {
-         $validated = $request->validate([
-            'url.name' => 'required|url|max:255',
-         ]);
+// деаем валидацию вручную:
+        $url = $request->input('url');
+        $validator = Validator::make($url, [
+            'name' => 'required|url|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $existsUrl = (bool)DB::table('urls')->where('name', $request->input('url.name'))->first();
         if (!$existsUrl) {
             DB::table('urls')->insert(
