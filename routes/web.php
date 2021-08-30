@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UrlController;
 use App\Http\Controllers\UrlCheckController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +17,7 @@ use App\Http\Controllers\UrlCheckController;
 */
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
-Route::post('/urls', [UrlController::class, 'store'])->name('urls.store');
 Route::get('/urls', [UrlController::class, 'index'])->name('urls.index');
 Route::get('/urls/{id}', [UrlController::class, 'show'])->name('urls.show');
+Route::post('/urls', [UrlController::class, 'store'])->name('urls.store');
 Route::post('/urls/{id}/checks', [UrlCheckController::class, 'store'])->name('urls.checks.store');
