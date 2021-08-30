@@ -13,6 +13,11 @@ class UrlCheckControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    /**
+     * Test of checks store.
+     *
+     * @return void
+     */
     public function testUrlChecksStore()
     {
         $id = DB::table('urls')->insertGetId(['name' => 'https://hexlet.io']);

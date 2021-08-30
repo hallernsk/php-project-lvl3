@@ -12,11 +12,10 @@ class UrlControllerTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * A basic feature test example.
+     * Test of urls index.
      *
      * @return void
      */
-
     public function testUrlsIndex()
     {
         DB::table('urls')->insert(
@@ -30,6 +29,11 @@ class UrlControllerTest extends TestCase
         $response->assertOk();
     }
 
+    /**
+     * Test of url show.
+     *
+     * @return void
+     */
     public function testUrlsShow()
     {
         $id = DB::table('urls')->insertGetId(['name' => 'http://hexlet.io']);
@@ -39,6 +43,11 @@ class UrlControllerTest extends TestCase
         $response->assertOk();
     }
 
+    /**
+     * Test of urls store.
+     *
+     * @return void
+     */
     public function testUrlsStore()
     {
         $data = ['url' => ['name' => 'http://yandex.ru']];

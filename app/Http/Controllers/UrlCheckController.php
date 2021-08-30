@@ -11,7 +11,12 @@ use DiDom\Document;
 
 class UrlCheckController extends Controller
 {
-    public function store($id)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(int $id)
     {
         $url = DB::table('urls')->where('id', $id)->first();
         $response = Http::get($url->name);

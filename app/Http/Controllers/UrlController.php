@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 class UrlController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         $urls = DB::table('urls')->paginate(15);
@@ -20,7 +25,12 @@ class UrlController extends Controller
         return view('urls', ['urls' => $urls, 'lastChecks' => $lastChecks]);
     }
 
-    public function show($id)
+    /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function show(int $id)
     {
         $url = DB::table('urls')->find($id);
         abort_unless($url, 404);
@@ -28,9 +38,14 @@ class UrlController extends Controller
         return view('url', ['url' => $url, 'checks' => $checks]);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
-// деаем валидацию вручную:
         $url = $request->input('url');
         $validator = Validator::make($url, [
             'name' => 'required|url|max:255',
