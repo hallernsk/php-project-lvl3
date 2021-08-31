@@ -21,7 +21,6 @@ class UrlController extends Controller
         $lastChecks = DB::table('url_checks')->orderBy('created_at')
             ->get()
             ->keyBy('url_id');
-//        dd($lastChecks);
         return view('urls', ['urls' => $urls, 'lastChecks' => $lastChecks]);
     }
 
@@ -46,8 +45,8 @@ class UrlController extends Controller
      */
     public function store(Request $request)
     {
-        $url = $request->input('url');
-        $validator = Validator::make($url, [
+        $inputUrl = $request->input('url');
+        $validator = Validator::make($inputUrl, [
             'name' => 'required|url|max:255',
         ]);
 
@@ -57,9 +56,9 @@ class UrlController extends Controller
                 ->withInput();
         }
 
-        $existsUrl = (bool)DB::table('urls')->where('name', $request->input('url.name'))->first();
-        if (!$existsUrl) {
-            DB::table('urls')->insert(
+        $url = DB::table('urls')->where('name', $request->input('url.name'))->first();
+        if (!$url) {
+            $id = DB::table('urls')->insertGetId(
                 [
                     'name' =>  $request->input('url.name'),
                     'created_at' => Carbon::now(),
@@ -68,8 +67,9 @@ class UrlController extends Controller
             );
             flash('Адрес добавлен в базу данных.');
         } else {
+            $id = $url->id;
             flash('Такой адрес уже существует!');
         }
-        return redirect()->route('urls.index');
+        return redirect()->route('urls.show', $id);
     }
 }
