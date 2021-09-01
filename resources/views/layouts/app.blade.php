@@ -37,7 +37,8 @@
         </ul>
     </div>
 @endif
+@include('flash::message')
 
-    @yield('content')    
+    @yield('content')
 </body>
 </html>
