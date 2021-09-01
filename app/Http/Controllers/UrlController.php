@@ -56,7 +56,10 @@ class UrlController extends Controller
                 ->withInput();
         }
 
-        $url = DB::table('urls')->where('name', $request->input('url.name'))->first();
+        $parsedUrl = parse_url($inputUrl['name']);
+        $normalUrl = "{$parsedUrl['scheme']}://{$parsedUrl['host']}";
+
+        $url = DB::table('urls')->where('name', $normalUrl)->first();
         if (is_null($url)) {
             $id = DB::table('urls')->insertGetId(
                 [
