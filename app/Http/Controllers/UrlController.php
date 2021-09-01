@@ -21,7 +21,7 @@ class UrlController extends Controller
         $lastChecks = DB::table('url_checks')->orderBy('created_at')
             ->get()
             ->keyBy('url_id');
-        return view('urls', ['urls' => $urls, 'lastChecks' => $lastChecks]);
+        return view('index', ['urls' => $urls, 'lastChecks' => $lastChecks]);
     }
 
     /**
@@ -34,7 +34,7 @@ class UrlController extends Controller
         $url = DB::table('urls')->find($id);
         abort_unless($url, 404);
         $checks = DB::table('url_checks')->where('url_id', $id)->latest()->get();
-        return view('url', ['url' => $url, 'checks' => $checks]);
+        return view('show', ['url' => $url, 'checks' => $checks]);
     }
 
     /**
