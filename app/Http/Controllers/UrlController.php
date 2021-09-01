@@ -57,7 +57,7 @@ class UrlController extends Controller
         }
 
         $url = DB::table('urls')->where('name', $request->input('url.name'))->first();
-        if (!$url) {
+        if (is_null($url)) {
             $id = DB::table('urls')->insertGetId(
                 [
                     'name' =>  $request->input('url.name'),
