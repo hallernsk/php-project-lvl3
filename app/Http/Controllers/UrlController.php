@@ -18,9 +18,11 @@ class UrlController extends Controller
     public function index()
     {
         $urls = DB::table('urls')->paginate(15);
-        $lastChecks = DB::table('url_checks')->orderBy('created_at')
+        $lastChecks = DB::table('url_checks')
+            ->orderBy('created_at') // работает и без этого???
             ->get()
             ->keyBy('url_id');
+ //       dd($lastChecks);
         return view('index', ['urls' => $urls, 'lastChecks' => $lastChecks]);
     }
 
