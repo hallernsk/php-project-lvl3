@@ -20,10 +20,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-            <a class="nav-link " href="{{ route('home') }}">Главная</a>
+              <a class="nav-link " href="{{ route('home') }}">Главная</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link " href="{{ route('urls.index') }}">Сайты</a>
+              <a class="nav-link " href="{{ route('urls.index') }}">Сайты</a>
             </li>
           </ul>
         </div>
@@ -40,5 +40,12 @@
     @endif
     @include('flash::message')
     @yield('content')
+    <footer class="border-top py-3 mt-5 flex-shrink-0">
+        <div class="container-lg">
+            <div class="text-center">
+                <a href="https://hexlet.io/pages/about" target="_blank">Hexlet</a>
+            </div>
+        </div>
+    </footer>
   </body>
 </html>
