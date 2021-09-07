@@ -46,9 +46,9 @@
             <tr>
                 <th>{{ $check->id }}</th>
                 <th>{{ $check->status_code }}</th>
-                <th>{{ $check->h1 }}</th>
-                <th>{{ $check->keywords }}</th>
-                <th>{{ $check->description }}</th>
+                <th>{{ Str::limit($check->h1, 30) }}</th>
+                <th>{{ Str::limit($check->keywords, 50) }}</th>
+                <th>{{ Str::limit($check->description, 50) }}</th>
                 <th>{{ $check->updated_at }}</th>
             </tr>
             @endforeach
