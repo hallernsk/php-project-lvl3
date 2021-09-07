@@ -23,7 +23,7 @@ class UrlController extends Controller
             ->get()
             ->keyBy('url_id');
  //       dd($lastChecks);
-        return view('index', ['urls' => $urls, 'lastChecks' => $lastChecks]);
+        return view('urls.index', ['urls' => $urls, 'lastChecks' => $lastChecks]);
     }
 
     /**
@@ -36,7 +36,7 @@ class UrlController extends Controller
         $url = DB::table('urls')->find($id);
         abort_unless($url, 404);
         $checks = DB::table('url_checks')->where('url_id', $id)->latest()->get();
-        return view('show', ['url' => $url, 'checks' => $checks]);
+        return view('urls.show', ['url' => $url, 'checks' => $checks]);
     }
 
     /**
