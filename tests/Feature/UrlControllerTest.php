@@ -9,6 +9,18 @@ use Illuminate\Support\Facades\DB;
 
 class UrlControllerTest extends TestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->id = DB::table('urls')->insertGetId(
+            [
+                'name' =>  'http://google.com',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]
+        );
+    }
+
     /**
      * Test of urls index.
      *
@@ -16,13 +28,6 @@ class UrlControllerTest extends TestCase
      */
     public function testUrlsIndex()
     {
-        DB::table('urls')->insert(
-            [
-                'name' =>  'http://google.com',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]
-        );
         $response = $this->get(route('urls.index'));
         $response->assertOk();
     }
@@ -34,10 +39,8 @@ class UrlControllerTest extends TestCase
      */
     public function testUrlsShow()
     {
-        $id = DB::table('urls')->insertGetId(['name' => 'http://hexlet.io']);
-        $response = $this->get(route('urls.show', $id));
-//        dd($response->headers);
-        $response->assertSee('hexlet.io');
+        $response = $this->get(route('urls.show', $this->id));
+        $response->assertSee('google.com');
         $response->assertOk();
     }
 
