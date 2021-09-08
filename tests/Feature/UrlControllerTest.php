@@ -28,7 +28,7 @@ class UrlControllerTest extends TestCase
      *
      * @return void
      */
-    public function testUrlsIndex()
+    public function testIndex()
     {
         $response = $this->get(route('urls.index'));
         $response->assertOk();
@@ -39,7 +39,7 @@ class UrlControllerTest extends TestCase
      *
      * @return void
      */
-    public function testUrlsShow()
+    public function testShow()
     {
         $response = $this->get(route('urls.show', $this->id));
         $response->assertSee('google.com');
@@ -51,7 +51,7 @@ class UrlControllerTest extends TestCase
      *
      * @return void
      */
-    public function testUrlsStore()
+    public function testStore()
     {
         $data = ['url' => ['name' => 'http://yandex.ru']];
         $response = $this->post(route('urls.store'), $data);
