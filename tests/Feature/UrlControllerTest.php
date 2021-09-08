@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 
 class UrlControllerTest extends TestCase
 {
+    private int $id;
+
     public function setUp(): void
     {
         parent::setUp();
