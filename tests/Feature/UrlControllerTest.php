@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class UrlControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
     /**
      * Test of urls index.
      *

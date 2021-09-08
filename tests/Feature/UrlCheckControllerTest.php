@@ -11,9 +11,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 
 class UrlCheckControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
-    /**
+     /**
      * Test of checks store.
      *
      * @return void
