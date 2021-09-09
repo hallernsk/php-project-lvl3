@@ -36,7 +36,8 @@ class UrlCheckControllerTest extends TestCase
         ];
 
         $response = $this->post(route('urls.checks.store', $id));
-
+        $response->assertSessionHasNoErrors();
+        $response->assertRedirect();
         $this->assertDatabaseHas('url_checks', $expected);
     }
 }
