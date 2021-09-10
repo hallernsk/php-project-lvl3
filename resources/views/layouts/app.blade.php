@@ -20,10 +20,18 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
+              @if(Route::is('home'))
+              <a class="nav-link active" href="{{ route('home') }}">Главная</a>
+              @else
               <a class="nav-link " href="{{ route('home') }}">Главная</a>
+              @endif
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="{{ route('urls.index') }}">Сайты</a>
+                @if(Route::is('urls.index'))
+                    <a class="nav-link active" href="{{ route('urls.index') }}">Сайты</a>
+                @else
+                    <a class="nav-link " href="{{ route('urls.index') }}">Сайты</a>
+                @endif
             </li>
           </ul>
         </div>

@@ -32,7 +32,7 @@
             <input type="submit" class="btn btn-primary" value="Запустить проверку">
         </form>
  <br>
-    @if(!$checks)
+    @if(empty($checks))
       <h4 class="mt-5 mb-3">Проверок еще не было</h4>
     @else
     <table class="table table-bordered table-hover">

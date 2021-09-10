@@ -22,7 +22,7 @@ class UrlController extends Controller
             ->orderBy('created_at') // работает и без этого???
             ->get()
             ->keyBy('url_id');
- //       dd($lastChecks);
+//        dd($lastChecks);
         return view('urls.index', ['urls' => $urls, 'lastChecks' => $lastChecks]);
     }
 
