@@ -16,7 +16,7 @@ class UrlCheckControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->id = DB::table('urls')->insertGetId(['name' => 'https://hexlet.io']);
+        $this->id = DB::table('urls')->insertGetId(['name' => 'https://test.com']);
     }
 
      /**
@@ -26,12 +26,9 @@ class UrlCheckControllerTest extends TestCase
      */
     public function testChecksStore()
     {
-         $body = '<h1>test-h1</h1>
-			<meta name="keywords" content="test-keywords">
-			<meta name="description" content="test-description">';
-
+        $data = file_get_contents(__DIR__ . '/../fixtures/test.html');
         Http::fake([
-            '*' => Http::response($body, 200),
+            '*' => Http::response($data, 200),
         ]);
 
         $expected = [

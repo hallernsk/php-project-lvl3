@@ -53,6 +53,9 @@ class UrlController extends Controller
         ]);
 
         if ($validator->fails()) {
+ //           dd($request);
+ //           $request->flash();
+ //           $request->flashOnly(['url']);
             return redirect()->route('home')
                 ->withErrors($validator)
                 ->withInput();
