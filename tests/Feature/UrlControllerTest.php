@@ -57,6 +57,47 @@ class UrlControllerTest extends TestCase
         $response = $this->post(route('urls.store'), $data);
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
-        $this->assertDatabaseHas('urls', $data['url']);
+ //       $this->assertDatabaseHas('urls', $data['url']);
+    }
+
+    /**
+     * Test of exist url store.
+     *
+     * @return void
+     */
+    public function testExistUrlStore()
+    {
+        $data = ['url' => ['name' => 'http://google.com']];   // уже имеющийся в БД url
+        $response = $this->post(route('urls.store'), $data);
+        $response->assertSessionHasNoErrors();
+        $response->assertRedirect();
+    }
+
+    /**
+     * Test of empty url store.
+     *
+     * @return void
+     */
+    public function testEmptyUrlStore()
+    {
+        $data = ['url' => ['name' => '']];       // "пустой" url
+        $response = $this->post(route('urls.store'), $data);
+        $response->assertSessionHasErrors(['name']);
+        $response->assertRedirect();
+    }
+
+    /**
+     * Test of large url store.
+     *
+     * @return void
+     */
+    public function testLargeUrlStore()
+    {
+        $data = ['url' => ['name' => 'http://test123456789012345678901234567890123456789012345678901234567890123456789
+        01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
+        01234567890123456789012345678990123456789012345678901234567890.com']];
+        $response = $this->post(route('urls.store'), $data);
+        $response->assertSessionHasErrors(['name' => 'The name must not be greater than 255 characters.']);
+        $response->assertRedirect();
     }
 }
