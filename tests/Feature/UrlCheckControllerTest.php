@@ -26,9 +26,14 @@ class UrlCheckControllerTest extends TestCase
      */
     public function testChecksStore()
     {
-        $data = file_get_contents(__DIR__ . '/../fixtures/test.html');
+        $htmlData = file_get_contents(__DIR__ . '/../fixtures/test.html');
+
+        if ($htmlData === false) {
+            throw new \Exception("Incorrect fixture(test.html)");
+        }
+
         Http::fake([
-            '*' => Http::response($data, 200),
+            'https://test.com' => Http::response($htmlData, 200),
         ]);
 
         $expected = [
