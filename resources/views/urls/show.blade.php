@@ -3,7 +3,7 @@
 @section('content')
 <main class="flex-grow-1">
     <div class="container-lg">
-        <h1 class="mt-5 mb-3">Сайт: {{ $url->name}}</h1>
+        <h1 class="mt-5 mb-3">{{ __('messages.site') }}: {{ $url->name}}</h1>
         <div class="table-responsive">
             <table class="table table-bordered table-hover text-nowrap">
                 <tr>
@@ -11,39 +11,39 @@
                     <td>{{ $url->id }}</td>
                 </tr>
                 <tr>
-                    <td>Имя</td>
+                    <td>{{ __('messages.site_name') }}</td>
                     <td>{{ $url->name }}</td>
                 </tr>
                 <tr>
-                    <td>Дата создания</td>
+                    <td>{{ __('messages.created_at') }}</td>
                     <td>{{ $url->created_at }}</td>
                 </tr>
                 <tr>
-                    <td>Дата обновления</td>
+                    <td>{{ __('messages.updated_at') }}</td>
                     <td>{{ $url->updated_at }}</td>
                 </tr>
             </table>
         </div>
 
-<h2 class="mt-5 mb-3">Проверки</h2>
+<h2 class="mt-5 mb-3">{{ __('messages.checks') }}</h2>
 
         <form method="post" action="{{ route('urls.checks.store', $url->id) }}">
             @csrf
-            <input type="submit" class="btn btn-primary" value="Запустить проверку">
+            <input type="submit" class="btn btn-primary" value="{{ __('messages.to_check') }}">
         </form>
  <br>
     @if(empty($checks))
-      <h4 class="mt-5 mb-3">Проверок еще не было</h4>
+      <h4 class="mt-5 mb-3">{{ __('messages.no_check') }}</h4>
     @else
     <table class="table table-bordered table-hover">
         <tbody>
             <tr>
                 <th>ID</th>
-                <th>Код ответа</th>
+                <th>{{ __('messages.site_code') }}</th>
                 <th>h1</th>
                 <th>keywords</th>
                 <th>description</th>
-                <th>Последняя проверка</th>
+                <th>{{ __('messages.site_check') }}</th>
             </tr>
             @foreach ($checks as $check)
             <tr>
