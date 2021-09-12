@@ -1,4 +1,5 @@
 <?php
+
 return [
     'name' => 'Page analyzer',
     'explanation' => 'Check sites for SEO suitability for free',
