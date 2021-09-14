@@ -11,7 +11,7 @@
           <p> {{ __('messages.explanation') }} </p>
             <form action="{{ route('urls.store') }}" method="post" class="d-flex justify-content-center">
                 @csrf
-                <input type="text" name="url[name]" value="{{ old('url[name]') }}" class="form-control form-control-lg" placeholder="http://example.com">
+                <input type="text" name="url[name]" value="{{ $url['name'] ?? '' }}" class="form-control form-control-lg" placeholder="http://example.com">
                 <button type="submit" class="btn btn-lg btn-primary ml-3 px-5 text-uppercase">{{ __('messages.check') }}</button>
           </form>
         </div>

@@ -22,7 +22,7 @@ class UrlController extends Controller
             ->orderBy('created_at') // работает и без этого???
             ->get()
             ->keyBy('url_id');
-//        dd($lastChecks);
+
         return view('urls.index', ['urls' => $urls, 'lastChecks' => $lastChecks]);
     }
 
@@ -53,9 +53,13 @@ class UrlController extends Controller
         ]);
 
         if ($validator->fails()) {
- //           dd($request);
- //           $request->flash();
- //           $request->flashOnly(['url']);
+//            $urlName = $inputUrl['name'];
+//            return view('home', ['urlName' => $urlName])->withErrors($validator);
+// такой вариант(сразу в шаблон) работает, но не проходят тесты (emptyUrl и largeUrl)
+
+//            return redirect()->route('home', $urlName)-> ...
+// вариант:передаем введенный (неверный) урл в контроллер home, а далее в шаблон - не работает
+
             return redirect()->route('home')
                 ->withErrors($validator)
                 ->withInput();

@@ -6,8 +6,15 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function home(): object
+    /**
+     * Display a a home page.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     */
+    public function home(Request $request)
     {
-        return view('home');
+        $url = $request->old('url');
+        return view('home', ['url' => $url]);
     }
 }
