@@ -82,20 +82,22 @@ class UrlControllerTest extends TestCase
     {
         $data = ['url' => ['name' => '']];
         $response = $this->post(route('urls.store'), $data);
-        $response->assertSessionHasErrors(['name']);
+        $response->assertSessionHasErrors(['name' => 'The name field is required.']);
         $response->assertRedirect();
     }
 
     /**
-     * Test of large url store.
+     * Test of long url store.
      *
      * @return void
      */
-    public function testLargeUrlStore()
+    public function testLongUrlStore()
     {
-        $data = ['url' => ['name' => 'http://test123456789012345678901234567890123456789012345678901234567890123456789
-        01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
-        01234567890123456789012345678990123456789012345678901234567890.com']];
+        $faker = \Faker\Factory::create();
+        $length = 250;
+        $longString = $faker->lexify(str_repeat('?', $length));
+        $data = ['url' => ['name' => 'http://' . "{$longString}"]];
+
         $response = $this->post(route('urls.store'), $data);
         $response->assertSessionHasErrors(['name' => 'The name must not be greater than 255 characters.']);
         $response->assertRedirect();

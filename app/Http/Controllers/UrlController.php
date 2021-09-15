@@ -19,7 +19,7 @@ class UrlController extends Controller
     {
         $urls = DB::table('urls')->paginate(15);
         $lastChecks = DB::table('url_checks')
-            ->orderBy('created_at') // работает и без этого???
+            ->orderBy('created_at')
             ->get()
             ->keyBy('url_id');
 
