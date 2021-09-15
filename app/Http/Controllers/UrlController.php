@@ -53,13 +53,6 @@ class UrlController extends Controller
         ]);
 
         if ($validator->fails()) {
-//            $urlName = $inputUrl['name'];
-//            return view('home', ['urlName' => $urlName])->withErrors($validator);
-// такой вариант(сразу в шаблон) работает, но не проходят тесты (emptyUrl и largeUrl)
-
-//            return redirect()->route('home', $urlName)-> ...
-// вариант:передаем введенный (неверный) урл в контроллер home, а далее в шаблон - не работает
-
             return redirect()->route('home')
                 ->withErrors($validator)
                 ->withInput();

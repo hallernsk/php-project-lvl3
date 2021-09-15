@@ -25,39 +25,39 @@
             </table>
         </div>
 
-<h2 class="mt-5 mb-3">{{ __('messages.checks') }}</h2>
+        <h2 class="mt-5 mb-3">{{ __('messages.checks') }}</h2>
 
         <form method="post" action="{{ route('urls.checks.store', $url->id) }}">
             @csrf
             <input type="submit" class="btn btn-primary" value="{{ __('messages.to_check') }}">
         </form>
- <br>
-    @if(empty($checks))
-      <h4 class="mt-5 mb-3">{{ __('messages.no_check') }}</h4>
-    @else
-    <table class="table table-bordered table-hover">
-        <tbody>
-            <tr>
-                <th>ID</th>
-                <th>{{ __('messages.site_code') }}</th>
-                <th>h1</th>
-                <th>keywords</th>
-                <th>description</th>
-                <th>{{ __('messages.site_check') }}</th>
-            </tr>
-            @foreach ($checks as $check)
-            <tr>
-                <th>{{ $check->id }}</th>
-                <th>{{ $check->status_code }}</th>
-                <th>{{ Str::limit($check->h1, 30) }}</th>
-                <th>{{ Str::limit($check->keywords, 50) }}</th>
-                <th>{{ Str::limit($check->description, 50) }}</th>
-                <th>{{ $check->updated_at }}</th>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-    @endif
-  </div>
+        <br>
+        @if(empty($checks))
+            <h4 class="mt-5 mb-3">{{ __('messages.no_check') }}</h4>
+        @else
+            <table class="table table-bordered table-hover">
+                <tbody>
+                    <tr>
+                        <th>ID</th>
+                        <th>{{ __('messages.site_code') }}</th>
+                        <th>h1</th>
+                        <th>keywords</th>
+                        <th>description</th>
+                        <th>{{ __('messages.site_check') }}</th>
+                    </tr>
+                    @foreach ($checks as $check)
+                    <tr>
+                        <th>{{ $check->id }}</th>
+                        <th>{{ $check->status_code }}</th>
+                        <th>{{ Str::limit($check->h1, 30) }}</th>
+                        <th>{{ Str::limit($check->keywords, 50) }}</th>
+                        <th>{{ Str::limit($check->description, 50) }}</th>
+                        <th>{{ $check->updated_at }}</th>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
+    </div>
 </main>
 @endsection

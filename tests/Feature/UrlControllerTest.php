@@ -67,7 +67,7 @@ class UrlControllerTest extends TestCase
      */
     public function testExistUrlStore()
     {
-        $data = ['url' => ['name' => 'http://google.com']];   // уже имеющийся в БД url
+        $data = ['url' => ['name' => 'http://google.com']];
         $response = $this->post(route('urls.store'), $data);
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
@@ -80,7 +80,7 @@ class UrlControllerTest extends TestCase
      */
     public function testEmptyUrlStore()
     {
-        $data = ['url' => ['name' => '']];       // "пустой" url
+        $data = ['url' => ['name' => '']];
         $response = $this->post(route('urls.store'), $data);
         $response->assertSessionHasErrors(['name']);
         $response->assertRedirect();
