@@ -58,13 +58,12 @@ class UrlController extends Controller
         }
 
         $parsedUrl = parse_url($inputUrl['name']);
-        $normalUrl = "{$parsedUrl['scheme']}://{$parsedUrl['host']}";
-
-        $url = DB::table('urls')->where('name', $normalUrl)->first();
+        $normalizedUrl = strtolower("{$parsedUrl['scheme']}://{$parsedUrl['host']}");
+        $url = DB::table('urls')->where('name', $normalizedUrl)->first();
         if (is_null($url)) {
             $id = DB::table('urls')->insertGetId(
                 [
-                    'name' =>  $request->input('url.name'),
+                    'name' =>  $normalizedUrl,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
                 ]
