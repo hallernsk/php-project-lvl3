@@ -17,7 +17,11 @@ use App\Http\Controllers\UrlCheckController;
 */
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
-Route::get('/urls', [UrlController::class, 'index'])->name('urls.index');
-Route::get('/urls/{id}', [UrlController::class, 'show'])->name('urls.show');
-Route::post('/urls', [UrlController::class, 'store'])->name('urls.store');
-Route::post('/urls/{id}/checks', [UrlCheckController::class, 'store'])->name('urls.checks.store');
+
+Route::resource('urls', UrlController::class)->only([
+    'index', 'show', 'store'
+]);
+
+Route::resource('urls.checks', UrlCheckController::class)->only([
+    'store'
+]);
