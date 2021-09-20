@@ -13,7 +13,7 @@
     <body class="min-vh-100 d-flex flex-column">
         <header class="flex-shrink-0">
             <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-                <a class="navbar-brand" href="{{ route('home') }}"> {{ __('messages.name') }} </a>
+                <a class="navbar-brand" href="{{ route('home') }}"> {{ __('views/app.page_analyzer') }} </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -21,16 +21,16 @@
                     <ul class="navbar-nav">
                         <li class="nav-item">
                         @if(Route::is('home'))
-                            <a class="nav-link active" href="{{ route('home') }}"> {{ __('messages.main') }} </a>
+                            <a class="nav-link active" href="{{ route('home') }}"> {{ __('views/app.main') }} </a>
                         @else
-                            <a class="nav-link " href="{{ route('home') }}"> {{ __('messages.main') }} </a>
+                            <a class="nav-link " href="{{ route('home') }}"> {{ __('views/app.main') }} </a>
                         @endif
                         </li>
                         <li class="nav-item">
                         @if(Route::is('urls.index'))
-                            <a class="nav-link active" href="{{ route('urls.index') }}"> {{ __('messages.sites') }} </a>
+                            <a class="nav-link active" href="{{ route('urls.index') }}"> {{ __('views/app.sites') }} </a>
                         @else
-                            <a class="nav-link " href="{{ route('urls.index') }}"> {{ __('messages.sites') }} </a>
+                            <a class="nav-link " href="{{ route('urls.index') }}"> {{ __('views/app.sites') }} </a>
                         @endif
                         </li>
                     </ul>

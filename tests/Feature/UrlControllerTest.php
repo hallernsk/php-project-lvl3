@@ -69,6 +69,7 @@ class UrlControllerTest extends TestCase
         $data = ['url' => ['name' => 'http://google.com']];
         $response = $this->post(route('urls.store'), $data);
         $response->assertSessionHasNoErrors();
+//        $response->assertSee('google.com');
         $response->assertRedirect();
     }
 
@@ -93,9 +94,8 @@ class UrlControllerTest extends TestCase
     public function testLongUrlStore()
     {
         $faker = \Faker\Factory::create();
-        $length = 250;
-        $longString = $faker->lexify(str_repeat('?', $length));
-        $data = ['url' => ['name' => 'http://' . "{$longString}"]];
+        $longUrlName = $faker->lexify('http://' . str_repeat('?', 250));
+        $data = ['url' => ['name' => "{$longUrlName}"]];
 
         $response = $this->post(route('urls.store'), $data);
         $response->assertSessionHasErrors(['name' => 'The name must not be greater than 255 characters.']);

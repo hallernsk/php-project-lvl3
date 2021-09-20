@@ -32,9 +32,11 @@ class UrlController extends Controller
      */
     public function show(int $id)
     {
+ //       dd($id);
         $url = DB::table('urls')->find($id);
         abort_unless($url, 404);
         $checks = DB::table('url_checks')->where('url_id', $id)->latest()->get()->all();
+ //       dd("show");
         return view('urls.show', ['url' => $url, 'checks' => $checks]);
     }
 
@@ -61,6 +63,7 @@ class UrlController extends Controller
         $normalizedUrl = strtolower("{$parsedUrl['scheme']}://{$parsedUrl['host']}");
         $url = DB::table('urls')->where('name', $normalizedUrl)->first();
         if (is_null($url)) {
+ //           dd("new url");
             $id = DB::table('urls')->insertGetId(
                 [
                     'name' =>  $normalizedUrl,
@@ -68,10 +71,12 @@ class UrlController extends Controller
                     'updated_at' => Carbon::now()
                 ]
             );
-            flash('Адрес добавлен в базу данных.');
+            flash(__('flash.page_added'));
         } else {
+//            dd("exist url");
             $id = $url->id;
-            flash('Такой адрес уже существует!');
+//            dd($id);
+            flash(__('flash.page_exists'));
         }
         return redirect()->route('urls.show', $id);
     }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\UrlCheck;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
@@ -42,7 +41,7 @@ class UrlCheckController extends Controller
                     'updated_at' => Carbon::now()
                 ]
             );
-            flash('Страница успешно проверена');
+            flash(__('flash.page_verified'));
         } catch (RequestException | ConnectionException $e) {
             flash($e->getMessage())->error();
         }
