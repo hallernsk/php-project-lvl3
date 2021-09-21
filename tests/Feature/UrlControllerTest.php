@@ -69,7 +69,6 @@ class UrlControllerTest extends TestCase
         $data = ['url' => ['name' => 'http://google.com']];
         $response = $this->post(route('urls.store'), $data);
         $response->assertSessionHasNoErrors();
-        $response->assertSee('google.com');
         $response->assertRedirect();
     }
 
