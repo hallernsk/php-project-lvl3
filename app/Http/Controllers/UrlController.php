@@ -18,7 +18,9 @@ class UrlController extends Controller
     {
         $urls = DB::table('urls')->paginate(15);
         $lastChecks = DB::table('url_checks')
-            ->orderBy('created_at')
+            ->orderBy('url_id')
+            ->orderBy('created_at', 'desc')
+            ->distinct('url_id')
             ->get()
             ->keyBy('url_id');
 
