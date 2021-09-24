@@ -71,8 +71,8 @@ class UrlControllerTest extends TestCase
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
 
-        $recordsAmount = DB::table('urls')->where('name', 'http://google.com')->count();
-        $this->assertEquals(1, $recordsAmount);
+        $this->assertDatabaseHas('urls', $data['url']);
+        $this->assertDatabaseCount('urls', 1);
     }
 
     /**
