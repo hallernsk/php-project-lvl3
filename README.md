@@ -26,7 +26,7 @@ $ make setup
 
 $ make start
 
-#### Demo:
+#### Демо проекта:
 
 https://hexlet-lvl3.herokuapp.com/
 
