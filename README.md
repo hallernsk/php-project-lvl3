@@ -4,7 +4,7 @@
 [![Actions Status](https://github.com/hallernsk/php-project-lvl3/workflows/hexlet-check/badge.svg)](https://github.com/hallernsk/php-project-lvl3/actions)
 
 
-## Анализатор страниц
+# Анализатор страниц
 
 Cайт, выполняющий проверку указанной веб-страницы на SEO пригодность. 
 
